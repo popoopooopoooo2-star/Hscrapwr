@@ -1,18 +1,21 @@
 {
-  "id": "hscrapwr-hh-uk-fix",
-  "name": "Hentai Haven (Hscrapwr)",
-  "version": "3.3.0",
-  "description": "Optimized for Warrington networks. Bypasses UK ISP blocks using AllOrigins proxy.",
-  "author": "Gemini-Nitro",
-  "type": "video",
-  "icon": "https://hentaihaven.xxx/favicon.ico",
-  "scriptUrl": "https://raw.githubusercontent.com/popoopooopoooo2-star/Hscrapwr/main/Module.js?v=330",
+  "sourceName": "Hentai Haven (Hscrapwr)",
+  "iconUrl": "https://hentaihaven.xxx/favicon.ico",
+  "author": {
+    "name": "popoopooopoooo2-star",
+    "icon": "",
+    "url": ""
+  },
+  "version": "4.0.0",
+  "language": "English",
+  "streamType": "HLS",
+  "quality": "720p",
   "baseUrl": "https://hentaihaven.xxx",
-  "handlers": [
-    { "name": "search", "action": "search" },
-    { "name": "discover", "action": "discover" },
-    { "name": "info", "action": "info" },
-    { "name": "media", "action": "media" },
-    { "name": "sources", "action": "sources" }
-  ]
+  "searchBaseUrl": "https://hentaihaven.xxx/?s=",
+  "scriptUrl": "https://raw.githubusercontent.com/popoopooopoooo2-star/Hscrapwr/main/Module.js?v=400",
+  "type": "anime",
+  "downloadSupport": false,
+  "asyncJS": true,
+  "streamAsyncJS": false,
+  "softsub": false
 }
