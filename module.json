@@ -3,16 +3,16 @@
   "iconUrl": "https://hentaihaven.xxx/favicon.ico",
   "author": {
     "name": "popoopooopoooo2-star",
-    "icon": "",
-    "url": ""
+    "icon": "https://github.com/popoopooopoooo2-star.png",
+    "url": "https://github.com/popoopooopoooo2-star"
   },
-  "version": "4.0.1",
+  "version": "4.1.0",
   "language": "English",
   "streamType": "HLS",
   "quality": "720p",
   "baseUrl": "https://hentaihaven.xxx",
   "searchBaseUrl": "https://hentaihaven.xxx/?s=",
-  "scriptUrl": "https://raw.githubusercontent.com/popoopooopoooo2-star/Hscrapwr/main/Module.js?v=4.0.1",
+  "scriptUrl": "https://raw.githubusercontent.com/popoopooopoooo2-star/Hscrapwr/main/Module.js?v=410",
   "type": "anime",
   "downloadSupport": false,
   "asyncJS": true,
