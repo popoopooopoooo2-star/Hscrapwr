@@ -5,25 +5,25 @@ async function searchResults(keyword) {
     try {
         const res = await fetch(pxy(`https://hentaihaven.xxx/?s=${encodeURIComponent(keyword)}&post_type=wp-manga`));
         const html = await res.text();
-        
         const items = html.split('class="post-title"').slice(1);
-        const results = items.map(item => {
+        
+        const results = items.map((item, index) => {
             const link = item.match(/href="([^"]+)"/)?.[1];
             const title = item.match(/>([^<]+)<\/a>/)?.[1];
-            const image = item.match(/src="([^"]+)"/)?.[1] || item.match(/data-src="([^"]+)"/)?.[1];
+            const image = item.match(/src="([^"]+)"/)?.[1] || "https://hentaihaven.xxx/favicon.ico";
+            
             return {
+                id: `hh-${index}`, // This "fake id" stops Sora from searching AniList
                 title: title ? title.trim() : "Untitled",
                 link: link || "",
-                image: image || ""
+                image: image
             };
-        }).filter(i => i.link);
+        });
 
-        // STICKY FIX: Always return a stringified array to avoid Code=3840
-        return JSON.stringify(results.length > 0 ? results : []);
-    } catch (e) { 
-        return JSON.stringify([]); // Never return empty/null
-    }
+        return JSON.stringify(results);
+    } catch (e) { return JSON.stringify([]); }
 }
+
 
 // 2. extractDetails
 async function extractDetails(url) {
