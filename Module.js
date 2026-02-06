@@ -1,28 +1,43 @@
 const pxy = (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`;
 
-// 1. searchResults - Adapted from the YouTube module's structure
 async function searchResults(keyword) {
     try {
-        const res = await fetch(pxy(`https://hentaihaven.xxx/?s=${encodeURIComponent(keyword)}&post_type=wp-manga`));
+        // We add a random number to the URL to bypass any "No Results" cache in Warrington
+        const url = `https://hentaihaven.xxx/?s=${encodeURIComponent(keyword)}&post_type=wp-manga&random=${Math.random()}`;
+        const res = await fetch(pxy(url));
         const html = await res.text();
-        const items = html.split('class="post-title"').slice(1);
         
-        const results = items.map(item => {
-            const link = item.match(/href="([^"]+)"/)?.[1] || "";
-            const title = item.match(/>([^<]+)<\/a>/)?.[1] || "Untitled";
-            const image = item.match(/src="([^"]+)"/)?.[1] || item.match(/data-src="([^"]+)"/)?.[1] || "";
+        const results = [];
+        // Hentai Haven 2026 uses 'c-tabs-item__content' for search results
+        const items = html.split('c-tabs-item__content').slice(1);
+        
+        for (const item of items) {
+            const link = item.match(/href="([^"]+)"/)?.[1];
+            const title = item.match(/title="([^"]+)"/)?.[1];
+            // Fix: Check 'data-src' first, then 'src'
+            const image = item.match(/data-src="([^"]+)"/)?.[1] || item.match(/src="([^"]+)"/)?.[1] || "";
             
-            return {
-                title: title.trim(),
-                image: image,
-                href: link // The YouTube module uses 'href' as the unique ID
-            };
-        }).filter(i => i.href !== "");
+            if (link && title) {
+                results.push({
+                    title: title.trim(),
+                    image: image,
+                    href: link // YouTube module uses 'href' as the primary ID
+                });
+            }
+        }
+        
+        // Final check: If results are empty, return a fake "No Results Found" card 
+        // to see if the UI is at least working.
+        if (results.length === 0) {
+            return JSON.stringify([{
+                title: "No Results Found - Try a different keyword",
+                image: "https://hentaihaven.xxx/favicon.ico",
+                href: "https://hentaihaven.xxx"
+            }]);
+        }
 
-        // Essential: Sora requires a stringified JSON array
         return JSON.stringify(results);
-    } catch (err) {
-        // Log-Fix: Return an empty stringified array instead of nothing to avoid Code=3840
+    } catch (e) {
         return JSON.stringify([]);
     }
 }
