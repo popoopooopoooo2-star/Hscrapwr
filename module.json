@@ -6,15 +6,17 @@
     "icon": "https://github.com/popoopooopoooo2-star.png",
     "url": "https://github.com/popoopooopoooo2-star"
   },
-  "version": "4.5.0",
+  "version": "5.1.0",
   "language": "English",
   "streamType": "HLS",
-  "quality": "720p",
-  "baseUrl": "https://hentaihaven.xxx",
-  "searchBaseUrl": "https://hentaihaven.xxx/?s=",
-  "scriptUrl": "https://raw.githubusercontent.com/popoopooopoooo2-star/Hscrapwr/main/Module.js?v=450",
-  "type": "others",
-  "isMetadataProvider": false,
+  "quality": "1080p",
+  "baseUrl": "https://hentaihaven.xxx/",
+  "searchBaseUrl": "https://hentaihaven.xxx/",
+  "scriptUrl": "https://raw.githubusercontent.com/popoopooopoooo2-star/Hscrapwr/main/Module.js?v=510",
+  "type": "anime/movies/shows",
+  "asyncJS": true,
+  "softsub": true,
   "downloadSupport": false,
-  "asyncJS": true
+  "supportsSora": true,
+  "supportsLuna": true
 }
